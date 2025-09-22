@@ -48,7 +48,7 @@ python3 collect_with_image.py
 
 ## 6. Build Vision-Based Dataset
 - After completing the above steps, you will have:
-  - A JSON file with actions (from step 3)
+  - A JSON file with actions (from step 4)
   - Images (from step 5)
 - Use these together as your vision-based dataset for further training or analysis.
 
