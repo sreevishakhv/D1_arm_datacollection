@@ -14,7 +14,8 @@ This project provides a pipeline for collecting and processing data for vision-b
 - Refer to the D1 SDK documentation for installation steps.
 
 ## 2. Data Collection
-
+### Control the arm with Joystick
+- Run `control_with_joystick.py` to controll the arm using a joystick interface.
 ### Collect Data with Joystick
 - Run `collect_with_joystick.py` to collect data using a joystick interface.
 - This will generate a dataset (e.g., a JSON file) with recorded actions.

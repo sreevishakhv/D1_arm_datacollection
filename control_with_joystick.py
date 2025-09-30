@@ -20,12 +20,6 @@ def main():
     # ---- Parse arguments ----
     parser = argparse.ArgumentParser(description="Gamepad controlled Unitree D1 arm")
     parser.add_argument(
-        "--save_path",
-        type=str,
-        required=True,
-        help="Path to JSON file where positions will be saved",
-    )
-    parser.add_argument(
         "--device",
         type=str,
         default="/dev/input/event7",
@@ -33,16 +27,8 @@ def main():
     )
     args = parser.parse_args()
 
-    save_data_path = args.save_path
     GAMEPAD_PATH = args.device
     gamepad = InputDevice(GAMEPAD_PATH)
-
-    # ---- Load existing data ----
-    try:
-        with open(save_data_path, "r") as file:
-            data = json.load(file)
-    except (FileNotFoundError, json.JSONDecodeError):
-        data = []
 
     # ---- Configurable Mapping ----
     button_mapping = {
@@ -83,12 +69,6 @@ def main():
                     angles = {i: 0 for i in range(7)}
                     angles[6] += 50
                     send_arm_command(angles)
-                elif action == 'save':
-                    print("Saving current position")
-                    data.append({count: angles.copy()})
-                    count += 1
-                    with open(save_data_path, "w") as file:
-                        json.dump(data, file, indent=4)
                 else:
                     joint, delta = action
                     angles[joint] += delta
