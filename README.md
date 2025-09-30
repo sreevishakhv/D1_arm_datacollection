@@ -53,6 +53,20 @@ python3 collect_with_image.py
   - Images (from step 5)
 - Use these together as your vision-based dataset for further training or analysis.
 
+## 6. Train and test act policy
+- Install requirements for ACT as described in \href{https://github.com/tonyzhaozh/act}{ACT}
+- To convert to ACT Dataset format:
+```bash
+python3 act/convert_to_act_hdf5.py   --images_root "D1_data/clean/imgs"   --actions_json "D1_data/clean/actions.json"   --out_dir "D1_data/act/data"   --camera_name top   --pad_action_to 14  
+```
+- Train ACT policy:
+```bash
+python3 imitate_episodes.py
+```
+- Test ACT policy:
+```bash
+python3 test_on_real.py
+```
 ---
 
 **Note:**
