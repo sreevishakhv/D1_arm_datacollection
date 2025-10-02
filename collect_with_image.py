@@ -97,10 +97,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Capture RealSense frames while sending arm commands.")
     parser.add_argument("--json", required=True, help="Path to gen_interpolated.json")
     parser.add_argument("--save-root", required=True, help="Directory to save captured frames")
-    parser.add_argument("--min-demo", type=int, default=40, help="Process demos with ID > min-demo (default: 40)")
+    parser.add_argument("--min-demo", type=int, default=-1, help="Process demos with ID > min-demo (default: -1 (collects all demos))")
     args = parser.parse_args()
 
     run(json_path=args.json, save_root=args.save_root, min_demo=args.min_demo)
 
 
-#python capture_and_move.py --json /home/sv/unitree_sdk2/d1_data/gen_interpolated.json --save-root /home/sv/unitree_sdk2/d1_data/default --min-demo -1
+#python capture_and_move.py --json unitree_sdk2/d1_data/gen_interpolated.json --save-root unitree_sdk2/d1_data/default
