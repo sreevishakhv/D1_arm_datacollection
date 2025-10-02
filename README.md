@@ -26,6 +26,7 @@ python3 collect_with_joystick.py
 
 ## 3. Data Interpolation
 - Use `interpolate.py` to interpolate the collected data for smoother trajectories or denser sampling.
+- This saves the data as data as JSON with interpolated joint angles.
 
 ```bash
 python3 interpolate.py
@@ -49,13 +50,13 @@ python3 collect_with_image.py
 
 ## 6. Build Vision-Based Dataset
 - After completing the above steps, you will have:
-  - A JSON file with actions (from step 4)
+  - A JSON file with actions (from step 4) or JSON file from step 3 if diretly usinf joint angles to train the policy.
   - Images (from step 5)
 - Use these together as your vision-based dataset for further training or analysis.
 
 ## 7. Train and test ACT policy
 - Install requirements for ACT (Action Chunking Transformer) as described in [ACT](https://github.com/tonyzhaozh/act)
-- To convert to ACT Dataset format:
+- To convert to ACT Dataset format (Images + joint angles JSON):
 ```bash
 python3 act/convert_to_act_hdf5.py   --images_root "D1_data/clean/imgs"   --actions_json "D1_data/clean/actions.json"   --out_dir "D1_data/act/data"   --camera_name top   --pad_action_to 14  
 ```
