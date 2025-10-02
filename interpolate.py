@@ -91,4 +91,4 @@ if __name__ == "__main__":
     process_file(args.input, args.output)
 
 
-# python interpolate.py --input /home/sv/unitree_sdk2/d1_sdk/build/generated_data.json --output /home/sv/unitree_sdk2/d1_data/gen_interpolated.json
+# python interpolate.py --inputunitree_sdk2/d1_sdk/build/generated_data.json --output unitree_sdk2/d1_data/gen_interpolated.json
