@@ -5,11 +5,11 @@ This project provides a pipeline for collecting and processing data for vision-b
 ## 1. Install Dependencies
 
 ### Unitree Go2 SDK 2
-- Download and install the Unitree Go2 SDK 2 from the official Unitree Robotics website.
+- Download and install the [Unitree Go2 SDK 2](https://support.unitree.com/home/en/developer/Obtain%20SDK) from the official Unitree Robotics website.
 - Follow the official installation instructions for your platform.
 
 ### D1 SDK
-- Install the D1 SDK as required for controlling the D1 arm.
+- Install the [D1 SDK](https://support.unitree.com/home/en/developer/D1Arm_services) as required for controlling the D1 arm.
 - You may have received an executable, but a proper installation is recommended for full control.
 - Refer to the D1 SDK documentation for installation steps.
 
@@ -53,19 +53,19 @@ python3 collect_with_image.py
   - Images (from step 5)
 - Use these together as your vision-based dataset for further training or analysis.
 
-## 6. Train and test act policy
-- Install requirements for ACT as described in \href{https://github.com/tonyzhaozh/act}{ACT}
+## 7. Train and test ACT policy
+- Install requirements for ACT (Action Chunking Transformer) as described in [ACT](https://github.com/tonyzhaozh/act)
 - To convert to ACT Dataset format:
 ```bash
 python3 act/convert_to_act_hdf5.py   --images_root "D1_data/clean/imgs"   --actions_json "D1_data/clean/actions.json"   --out_dir "D1_data/act/data"   --camera_name top   --pad_action_to 14  
 ```
 - Train ACT policy:
 ```bash
-python3 imitate_episodes.py
+python3 act/imitate_episodes.py
 ```
 - Test ACT policy:
 ```bash
-python3 test_on_real.py
+python3 act/test_on_real.py
 ```
 ---
 
