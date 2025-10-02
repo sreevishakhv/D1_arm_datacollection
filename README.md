@@ -21,7 +21,7 @@ This project provides a pipeline for collecting and processing data for vision-b
 - This will generate a dataset (e.g., a JSON file) with recorded actions.
 
 ```bash
-python3 collect_with_joystick.py
+python collect_with_joystick.py
 ```
 
 ## 3. Data Interpolation
@@ -29,22 +29,22 @@ python3 collect_with_joystick.py
 - This saves the data as data as JSON with interpolated joint angles.
 
 ```bash
-python3 interpolate.py
+python interpolate.py --inputunitree_sdk2/d1_sdk/build/data_from_joystick.json --output unitree_sdk2/d1_data/interpolated.json
 ```
 
 ## 4. Get actions as a JSON file
-###4a. Actions as change in x,y and z coordinates
+### 4a. Actions as change in x,y and z coordinates
 - Use `apply_forward_kinematics.py` to process the interpolated data and compute the forward kinematics.
 - This step will save the actions part of the dataset as delta xyz. This can be skipped if using ACT policy as this directly uses the joint angles
 - Applying forward kinematics
 
 ```bash
-python3 apply_forward_kinematics.py
+python apply_forward_kinematics.py --input unitree_sdk2/d1_data/interpolated.json   --output unitree_sdk2/d1_data/interpolated_fk.json
 ```
-###4b. Actions as joint angles
+### 4b. Actions as joint angles
 - To get the action part of dataset as joint angles run:
 ```bash
-python3 joint_angle_data.py
+python joint_angle_data.py --input unitree_sdk2/d1_data/interpolated.json --output unitree_sdk2/d1_data/interpolated_ja.json
 ```
 
 ## 5. Collect Image Data
@@ -52,7 +52,7 @@ python3 joint_angle_data.py
 - This will save images corresponding to the actions in your dataset.
 
 ```bash
-python3 collect_with_image.py
+python collect_with_image.py --json unitree_sdk2/d1_data/gen_interpolated.json --save-root unitree_sdk2/d1_data/default
 ```
 
 ## 6. Build Vision-Based Dataset
