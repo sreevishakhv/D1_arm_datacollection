@@ -25,8 +25,8 @@ def main():
     parser = argparse.ArgumentParser(
         description="Convert interpolated JSON to skipfirst JSON format."
     )
-    parser.add_argument("input", help="Path to the input interpolated JSON file")
-    parser.add_argument("output", help="Path to save the converted skipfirst JSON file")
+    parser.add_argument("--input", help="Path to the input interpolated JSON file")
+    parser.add_argument("--output", help="Path to save the converted skipfirst JSON file")
     
     args = parser.parse_args()
     convert_interpolated_to_skipfirst(args.input, args.output)
