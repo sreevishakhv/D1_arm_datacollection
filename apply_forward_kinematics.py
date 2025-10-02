@@ -90,4 +90,4 @@ if __name__ == "__main__":
     )
 
 
-#python apply_forward_kinematics.py --input /home/sv/unitree_sdk2/d1_data/gen_interpolated.json   --output /home/sv/unitree_sdk2/d1_data/gen_fk.json --label-threshold 50 --placeholder-joint6 0
+#python apply_forward_kinematics.py --input unitree_sdk2/d1_data/gen_interpolated.json   --output unitree_sdk2/d1_data/gen_fk.json --label-threshold 50 --placeholder-joint6 0
