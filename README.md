@@ -32,12 +32,17 @@ python3 collect_with_joystick.py
 python3 interpolate.py
 ```
 
-## 4. Apply Forward Kinematics
+## 4. Apply Forward Kinematics (Optional) #TODO update
 - Use `apply_forward_kinematics.py` to process the interpolated data and compute the forward kinematics.
-- This step will save the actions part of the dataset.
+- Applying forward kinematics
 
 ```bash
 python3 apply_forward_kinematics.py
+```
+- This step will save the actions part of the dataset as delta xyz. This can be skipped if using ACT policy as this directly uses the joint angles
+- To get the action part of dataset as joint angles run:
+```bash
+python3 joint_angle_data.py
 ```
 
 ## 5. Collect Image Data
