@@ -4,6 +4,11 @@ This project provides a pipeline for collecting and processing data for vision-b
 
 ## 1. Install Dependencies
 
+- Create a conda environment, this is where you install all the remaining dependancies
+
+```bash
+conda create --name d1 python=3.9
+```
 ### Unitree Go2 SDK 2
 - Download and install the [Unitree Go2 SDK 2](https://support.unitree.com/home/en/developer/Obtain%20SDK) from the official Unitree Robotics website.
 - Follow the official installation instructions for your platform.
@@ -26,25 +31,27 @@ python collect_with_joystick.py
 
 ## 3. Data Interpolation
 - Use `interpolate.py` to interpolate the collected data for smoother trajectories or denser sampling.
-- This saves the data as data as JSON with interpolated joint angles.
+- This saves the data as JSON with interpolated joint angles.
 
 ```bash
-python interpolate.py --inputunitree_sdk2/d1_sdk/build/data_from_joystick.json --output unitree_sdk2/d1_data/interpolated.json
+python interpolate.py --input data_from_joystick.json --output interpolated.json
 ```
 
 ## 4. Get actions as a JSON file
 ### 4a. Actions as change in x,y and z coordinates
+> [!IMPORTANT]
+> This can be skipped if using ACT policy as this directly uses the joint angles
 - Use `apply_forward_kinematics.py` to process the interpolated data and compute the forward kinematics.
-- This step will save the actions part of the dataset as delta xyz. This can be skipped if using ACT policy as this directly uses the joint angles
+- This step will save the actions part of the dataset as delta xyz. 
 - Applying forward kinematics
 
 ```bash
-python apply_forward_kinematics.py --input unitree_sdk2/d1_data/interpolated.json   --output unitree_sdk2/d1_data/interpolated_fk.json
+python apply_forward_kinematics.py --input interpolated.json   --output interpolated_fk.json
 ```
 ### 4b. Actions as joint angles
 - To get the action part of dataset as joint angles run:
 ```bash
-python joint_angle_data.py --input unitree_sdk2/d1_data/interpolated.json --output unitree_sdk2/d1_data/interpolated_ja.json
+python joint_angle_data.py --input interpolated.json --output interpolated_ja.json
 ```
 
 ## 5. Collect Image Data
@@ -65,11 +72,11 @@ python collect_with_image.py --json unitree_sdk2/d1_data/gen_interpolated.json -
 - Install requirements for ACT (Action Chunking Transformer) as described in [ACT](https://github.com/tonyzhaozh/act)
 - To convert to ACT Dataset format (Images + joint angles JSON):
 ```bash
-python3 act/convert_to_act_hdf5.py   --images_root "D1_data/clean/imgs"   --actions_json "D1_data/clean/actions.json"   --out_dir "D1_data/act/data"   --camera_name top   --pad_action_to 14  
+python3 act/convert_to_act_hdf5.py   --images_root "imgs"   --actions_json "actions.json"   --out_dir "data"   --camera_name top   --pad_action_to 14  
 ```
 - Train ACT policy:
 ```bash
-python3 act/imitate_episodes.py --task_name lift --ckpt_dir "D1_data/act/model_0_0" --policy_class ACT --kl_weight 10 --chunk_size 1
+python3 act/imitate_episodes.py --task_name lift --ckpt_dir "act/model_0_0" --policy_class ACT --kl_weight 10 --chunk_size 1
 0 --hidden_dim 512 --batch_size 8 --dim_feedforward 3200 --num_epochs 50  --lr 1e-5 --seed 0
 ```
 - Test ACT policy:
