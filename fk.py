@@ -6,8 +6,8 @@ import sys
 class ForwardKinematicsSolver_old:
     def __init__(self, joint_angles):
         # Load the robot chain from the URDF file
-        # urdf_path = "/home/sv/unitree_sdk2/d1_sdk/4752f3ffb3a349ebaba90f8d69b4fefe/d1_550_description/urdf/d1_550_description.urdf"
-        urdf_path = '/home/sv/unitree_sdk2/d1_sdk/d1_description.urdf'
+        # urdf_path = "unitree_sdk2/d1_sdk/4752f3ffb3a349ebaba90f8d69b4fefe/d1_550_description/urdf/d1_550_description.urdf"
+        urdf_path = 'unitree_sdk2/d1_sdk/d1_description.urdf'
         self.my_chain = Chain.from_urdf_file(urdf_path, base_elements=["base_link"])
 
         # Exclude fixed joints
@@ -42,7 +42,7 @@ class ForwardKinematicsSolver_old:
 
 class ForwardKinematicsSolver:
     def __init__(self):
-        urdf_path = '/home/sv/unitree_sdk2/d1_sdk/d1_description.urdf'
+        urdf_path = 'unitree_sdk2/d1_sdk/d1_description.urdf'
         self.my_chain = Chain.from_urdf_file(urdf_path, base_elements=["base_link"])
         self.my_chain.active_links_mask = [False, True, True, True, True, True, True, True]
 

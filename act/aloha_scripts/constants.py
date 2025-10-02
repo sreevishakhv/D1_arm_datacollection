@@ -1,6 +1,6 @@
 ### Task parameters
 
-DATA_DIR = '/home/sv/D1_data/ft/data_m20_m10'
+DATA_DIR = 'D1_data/ft/data_m20_m10'
 TASK_CONFIGS = {
     'aloha_wear_shoe':{
         'dataset_dir': DATA_DIR + '/aloha_wear_shoe',
@@ -10,8 +10,8 @@ TASK_CONFIGS = {
     },
     'test':{
         'dataset_dir': DATA_DIR ,
-        'num_episodes': 50,
-        'episode_len': 37,
+        'num_episodes': 200,
+        'episode_len': 44,
         'camera_names': ['top']
     },
 }

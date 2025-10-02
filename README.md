@@ -57,7 +57,7 @@ python collect_with_image.py --json unitree_sdk2/d1_data/gen_interpolated.json -
 
 ## 6. Build Vision-Based Dataset
 - After completing the above steps, you will have:
-  - A JSON file with actions (from step 4) or JSON file from step 3 if diretly usinf joint angles to train the policy.
+  - A JSON file with actions.
   - Images (from step 5)
 - Use these together as your vision-based dataset for further training or analysis.
 
@@ -69,7 +69,8 @@ python3 act/convert_to_act_hdf5.py   --images_root "D1_data/clean/imgs"   --acti
 ```
 - Train ACT policy:
 ```bash
-python3 act/imitate_episodes.py
+python3 act/imitate_episodes.py --task_name lift --ckpt_dir "D1_data/act/model_0_0" --policy_class ACT --kl_weight 10 --chunk_size 1
+0 --hidden_dim 512 --batch_size 8 --dim_feedforward 3200 --num_epochs 50  --lr 1e-5 --seed 0
 ```
 - Test ACT policy:
 ```bash

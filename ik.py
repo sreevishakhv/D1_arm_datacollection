@@ -7,7 +7,7 @@ import sys
 class MyJointStatePublisher:
     def __init__(self, target_position, target_orientation, current_joint_angles_rad):
         # Load the robot chain from the URDF file
-        # urdf_path = "/home/sv/unitree_sdk2/d1_sdk/4752f3ffb3a349ebaba90f8d69b4fefe/d1_550_description/urdf/d1_550_description.urdf"
+        # urdf_path = "unitree_sdk2/d1_sdk/4752f3ffb3a349ebaba90f8d69b4fefe/d1_550_description/urdf/d1_550_description.urdf"
         urdf_path = 'unitree_sdk2/d1_sdk/d1_description.urdf'
         self.my_chain = Chain.from_urdf_file(urdf_path, base_elements=["base_link"])
 
